@@ -9,23 +9,23 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminUserController extends Controller
 {
-    public function viewUsers() {
+    public function view() {
         $users = User::where('user_type', 'user')->get();
         return view('admin.users.view_users', compact('users'));
     }
 
-    public function editUser($id) {
+    public function edit($id) {
         $user = User::findOrFail($id);
         return view('admin.users.edit_user', compact('user'));
     }
 
-    public function updateUser(Request $request, $id) {
+    public function update(Request $request, $id) {
         // Validation
         $request->validate([
             'name'      => 'required|string|max:255',
             'email'     => 'required|email',
             'user_type' => 'required|in:user,admin',
-            'password'  => 'nullable|string|min:6|confirmed', // optional password
+            'password'  => 'nullable|string|min:6|confirmed',
         ]);
 
         $user = User::findOrFail($id);
@@ -45,7 +45,7 @@ class AdminUserController extends Controller
         return redirect()->route('admin.users')->with('message', 'User updated successfully!');
     }
 
-    public function deleteUser($id) {
+    public function delete($id) {
         User::findOrFail($id)->delete();
         return redirect()->route('admin.users')->with('message', 'User deleted successfully!');
     }

@@ -10,7 +10,7 @@ class AdminCategoryController extends Controller
 {
     //Public Add Method
     public function add() {
-        
+    
         return view('admin.category.add');
     }
 

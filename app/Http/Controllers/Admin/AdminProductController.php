@@ -31,7 +31,7 @@ public function postAdd(Request $request) {
     $product->product_description = $request->product_description;
     $product->product_prices = $request->product_prices;
     $product->product_quantity = $request->product_quantity;
-    $product->product_category = $request->product_category;
+    $product->product_category = $request->product_category; 
 
     // Handle image separately
     if ($request->hasFile('product_image')) {

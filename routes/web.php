@@ -74,12 +74,12 @@ Route::middleware(['auth','admin'])->group(function(){
     Route::get('/update_product/{id}', [AdminProductController::class, 'update'])->name('admin.updateproduct');
     Route::post('/update_product/{id}', [AdminProductController::class, 'postUpdate'])->name('admin.postupdateproduct');
 
-    Route::get('/vieworder', [AdminOrderController::class, 'viewOrder'])->name('admin.orders.vieworders');
+    Route::get('/vieworder', [AdminOrderController::class, 'view'])->name('admin.orders.vieworders');
     Route::post('/update_order_status/{id}', [AdminOrderController::class, 'updateOrderStatus'])->name('admin.orders.updateorderstatus');
-    Route::delete('/delete_order/{id}', [AdminOrderController::class, 'deleteOrder'])->name('admin.deleteorder');
+    Route::delete('/delete_order/{id}', [AdminOrderController::class, 'delete'])->name('admin.deleteorder');
 
-    Route::get('/users', [AdminUserController::class, 'viewUsers'])->name('admin.users');
-    Route::get('/users/edit/{id}', [AdminUserController::class, 'editUser'])->name('admin.users.edit');
-    Route::post('/users/update/{id}', [AdminUserController::class, 'updateUser'])->name('admin.users.update');
-    Route::delete('/users/delete/{id}', [AdminUserController::class, 'deleteUser'])->name('admin.users.delete');
+    Route::get('/users', [AdminUserController::class, 'view'])->name('admin.users');
+    Route::get('/users/edit/{id}', [AdminUserController::class, 'edit'])->name('admin.users.edit');
+    Route::post('/users/update/{id}', [AdminUserController::class, 'update'])->name('admin.users.update');
+    Route::delete('/users/delete/{id}', [AdminUserController::class, 'delete'])->name('admin.users.delete');
 });

@@ -8,7 +8,7 @@ use App\Models\Order;
 
 class AdminOrderController extends Controller
 {
-    public function viewOrder() {
+    public function view() {
         $orders = Order::all();
         return view('admin.orders.vieworders', compact('orders'));
     }
@@ -21,7 +21,7 @@ class AdminOrderController extends Controller
         return redirect()->back()->with('order_message', 'Order status updated successfully!');
     }
 
-    public function deleteOrder($id) {
+    public function delete($id) {
         Order::findOrFail($id)->delete();
         return redirect()->back()->with('order_message', 'Order deleted successfully!');
     }
