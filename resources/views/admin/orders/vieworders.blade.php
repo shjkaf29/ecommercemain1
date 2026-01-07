@@ -19,7 +19,6 @@
                 <thead class="table-light">
                     <tr>
                         <th>#</th>
-                        <th>Order ID</th>
                         <th>User Name</th>
                         <th>Receiver Address</th>
                         <th>Receiver Phone</th>

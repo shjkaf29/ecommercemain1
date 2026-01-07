@@ -14,7 +14,7 @@
     @if ($isEmpty)
         <div style="text-align: center; color: #777; padding: 40px 0;">
             <p>No products found in your cart.</p>
-            <a href="{{ url('/products') }}" style="display:inline-block; margin-top:10px; padding:10px 20px; background:#007bff; color:#fff; text-decoration:none; border-radius:5px;">
+            <a href="{{ route('index') }}" style="display:inline-block; margin-top:10px; padding:10px 20px; background:#007bff; color:#fff; text-decoration:none; border-radius:5px;">
                 Browse Products
             </a>
         </div>

@@ -15,18 +15,19 @@ use Illuminate\Support\Facades\Route;
 require __DIR__.'/auth.php';
 
 // Dashboard route (shared for user/admin)
-Route::middleware(['auth','verified'])->group(function(){
+Route::middleware(['auth'])->group(function(){
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
 });
 
 // Frontend home page
-Route::get('/', [UserDashboardController::class,'home'])->name('index');
-
-Route::get('/contact', [ContactController::class, 'index'])->name('contact');
-Route::post('/contact', [ContactController::class, 'store'])->name('contact.submit');
+Route::group([], function(){
+    Route::get('/', [UserDashboardController::class,'home'])->name('index');
+    Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+    Route::post('/contact', [ContactController::class, 'store'])->name('contact.submit');
+});
 
 // User routes
-Route::middleware(['auth','verified'])->group(function(){
+Route::middleware(['auth'])->group(function(){
     Route::post('/confirm_order', [UserOrderController::class, 'confirmOrder'])->name('confirm_order');
     Route::get('/myorders', [UserOrderController::class, 'myOrders'])->name('user.myorders');
     Route::get('/cancel-order/{id}', [UserOrderController::class, 'cancelOrder'])->name('user.cancelorder');

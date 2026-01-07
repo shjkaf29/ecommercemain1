@@ -8,6 +8,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Models\Order;
+use App\Models\ProductCart;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -22,38 +24,61 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse{
-    $request->authenticate();
-    $request->session()->regenerate();
+    public function store(LoginRequest $request): RedirectResponse
+    {
+        // Authenticate user
+        $request->authenticate();
+        $request->session()->regenerate();
 
-    // ✅ HANDLE PENDING GUEST ORDER
-    if (session()->has('pending_order')) {
+        $userId = Auth::id();
 
-        $data = session('pending_order');
+        // 1️⃣ Merge guest cart into user cart
+        if (session()->has('guest_cart')) {
+            $guestCart = session('guest_cart');
 
-        foreach ($data['product_ids'] as $productId) {
-            Order::create([
-                'user_id'          => Auth::id(),
-                'product_id'       => $productId,
-                'receiver_address' => $data['receiver_address'],
-                'receiver_phone'   => $data['receiver_number'],
-                'status'           => 'pending',
+        foreach ($guestCart as $item) {
+            $cart = ProductCart::firstOrNew([
+                'user_id' => $userId,
+                'product_id' => $item['product_id'],
             ]);
+
+            $cart->quantity = ($cart->quantity ?? 0) + $item['quantity'];
+
+            $cart->product_price = $item['product_price'];
+
+            $cart->save();
         }
 
-        ProductCart::where('user_id', Auth::id())->delete();
+        session()->forget('guest_cart');
+        }
 
-        session()->forget('pending_order');
+        // 2️⃣ Handle pending order if exists
+        if (session()->has('pending_order')) {
+            $data = session('pending_order');
 
-        return redirect()
-            ->route('user.order-history')
-            ->with('order_message', 'Order placed successfully!');
+            foreach ($data['product_ids'] as $productId) {
+                Order::create([
+                    'user_id'          => $userId,
+                    'product_id'       => $productId,
+                    'receiver_address' => $data['receiver_address'],
+                    'receiver_phone'   => $data['receiver_number'],
+                    'status'           => 'pending',
+                ]);
+            }
+
+            // Clear the cart after order
+            ProductCart::where('user_id', $userId)->delete();
+
+            session()->forget('pending_order');
+
+            return redirect()
+                ->route('user.order-history')
+                ->with('order_message', 'Order placed successfully!');
+        }
+
+        // Default redirect after login
+        return redirect()->intended(route('index'));
     }
-
-    return redirect()->intended(route('index', false));
-    }
-
-
 
     /**
      * Destroy an authenticated session.
@@ -63,7 +88,6 @@ class AuthenticatedSessionController extends Controller
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
         return redirect('/');

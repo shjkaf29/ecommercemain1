@@ -33,7 +33,8 @@ class AdminCategoryController extends Controller
     }
 
     public function delete($id) {
-        Category::findOrFail($id)->delete();
+        $category = Category::findOrFail($id);
+        $category->delete();
         return redirect()->back()->with('deletecategory_message', 'Category deleted successfully!');
     }
 
@@ -55,3 +56,4 @@ class AdminCategoryController extends Controller
         return redirect()->back()->with('update_message', 'Category updated successfully!');
     }
 }
+
