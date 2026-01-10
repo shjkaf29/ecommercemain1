@@ -1,6 +1,6 @@
 @extends('admin.layouts.maindesign')
 
-@section('update_category')
+@section('panel')
     @if (session('category_message'))
         <div class="alert alert-success mt-3">
             {{ session('category_message') }}

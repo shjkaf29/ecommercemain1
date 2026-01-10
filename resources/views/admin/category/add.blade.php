@@ -1,6 +1,6 @@
 @extends('admin.layouts.maindesign')
 
-@section('add_category')
+@section('panel')
     <div class="container my-5">
         @if(session('category_message'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">

@@ -93,7 +93,7 @@
       </div>
 
       <section class="no-padding-top no-padding-bottom">
-        @yield('dashboard')
+        {{-- @yield('dashboard')
         @yield('add_category')
         @yield('view_category')
         @yield('update_category')
@@ -102,7 +102,8 @@
         @yield('update_product')
         @yield('view_orders')
         @yield('view_users')
-        @yield('edit_user')
+        @yield('edit_user') --}}
+         @yield('panel')
       </section>
 
       <footer class="footer">

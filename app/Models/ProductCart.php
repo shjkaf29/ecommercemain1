@@ -9,14 +9,12 @@ class ProductCart extends Model
 {
     use HasFactory;
 
-    // ✅ Allow mass assignment
     protected $fillable = [
         'user_id',
         'product_id',
         'quantity',
     ];
 
-    // Relationships
     public function user(){
         return $this->belongsTo('App\Models\User','user_id');
     }

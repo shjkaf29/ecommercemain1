@@ -19,6 +19,7 @@ class UserCartController extends Controller
                     'product_id' => $product->id,
                 ]);
                 $cart->quantity = ($cart->quantity ?? 0) + $quantity;
+                $cart->product_price = $product->product_prices;
                 $cart->save();
             } else {
                 $cart = session()->get('guest_cart', []);

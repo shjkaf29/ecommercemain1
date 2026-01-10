@@ -1,6 +1,6 @@
 @extends('admin.layouts.maindesign')
 
-@section('view_category')
+@section('panel')
 
 @if (session('deletecategory_message'))
 

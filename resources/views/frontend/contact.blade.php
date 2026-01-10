@@ -1,4 +1,4 @@
-@extends('layouts.contact-layout')
+@extends('layouts.maindesign')
 
 @section('content')
 <section class="contact_section">
@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="col-md-6 col-lg-5 px-0">
-        <form action="{{ route('contact.submit') }}" method="POST">
+        <form action="#" method="POST">
           @csrf
           <div><input type="text" name="name" placeholder="Name" required /></div>
           <div><input type="email" name="email" placeholder="Email" required /></div>

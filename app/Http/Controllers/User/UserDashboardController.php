@@ -14,6 +14,7 @@ class UserDashboardController extends Controller
     {
         $products = Product::latest()->take(8)->get();
         $count = 0;
+
         return view('frontend.index', compact('products', 'count'));
     }
 

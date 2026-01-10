@@ -1,6 +1,6 @@
-@extends('maindesign')
+@extends('layouts.maindesign')
 
-@section('viewCart_products')
+@section('content')
 <div style="max-width: 900px; margin: 40px auto; padding: 20px; background: #fff; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
 
     <h2 style="text-align:center; margin-bottom: 25px; color:#333;">🛒 My Cart</h2>

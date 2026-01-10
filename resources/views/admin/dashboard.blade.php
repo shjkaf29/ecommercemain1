@@ -1,5 +1,5 @@
 @extends('admin.layouts.maindesign')
-@section('dashboard')
+@section('panel')
 
 <div class="container-fluid">
     <div class="row">

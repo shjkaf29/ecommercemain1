@@ -1,6 +1,6 @@
 @extends('admin.layouts.maindesign')
 
-@section('view_product')
+@section('panel')
 
 @if (session('deleteproduct_message'))
 

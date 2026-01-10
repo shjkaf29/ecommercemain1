@@ -1,6 +1,6 @@
 @extends('admin.layouts.maindesign')
 
-@section('edit_user')
+@section('panel')
 <div class="container mt-5">
     <h3>Edit User</h3>
 

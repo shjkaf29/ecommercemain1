@@ -10,6 +10,7 @@ use App\Http\Controllers\User\UserDashboardController;
 use App\Http\Controllers\User\UserOrderController;
 use App\Http\Controllers\User\UserProductController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 
 require __DIR__.'/auth.php';
@@ -21,9 +22,10 @@ Route::middleware(['auth'])->group(function(){
 
 // Frontend home page
 Route::group([], function(){
-    Route::get('/', [UserDashboardController::class,'home'])->name('index');
-    Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+    Route::get('/', [UserDashboardController::class,'home'])->name('index');//home page
+    Route::get('/frontend/contact', [ContactController::class, 'index'])->name('frontend.contact');
     Route::post('/contact', [ContactController::class, 'store'])->name('contact.submit');
+    Route::get('/frontend/shop',[ShopController::class, 'index'])->name('frontend.shop');
 });
 
 // User routes

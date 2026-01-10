@@ -1,6 +1,6 @@
 @extends('admin.layouts.maindesign')
 
-@section('view_orders')
+@section('panel')
 
 @if (session('order_message'))
     <div class="alert alert-success mt-3">

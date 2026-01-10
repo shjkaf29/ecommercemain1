@@ -1,6 +1,6 @@
 @extends('admin.layouts.maindesign')
 
-@section('add_product')
+@section('panel')
     @if (session('product_message'))
         <div class="alert alert-success mt-3">
             {{ session('product_message') }}
