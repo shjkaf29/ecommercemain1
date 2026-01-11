@@ -10,7 +10,7 @@
                     <div class="detail-box"> 
                       <h1>Welcome To Our <br> Gift Shop</h1>
                       <p>
-                        Sequi perspiciatis nulla reiciendis, rem, tenetur impedit, eveniet non necessitatibus error distinctio mollitia suscipit. Nostrum fugit doloribus consequatur distinctio esse, possimus maiores aliquid repellat beatae cum, perspiciatis enim, accusantium perferendis.
+                       We ensure that nothing is overlooked and all details are carefully managed. Our team handles every step with precision, making sure nothing is missed, and providing reliable and high-quality service.
                       </p>
                       <a href="{{ route('frontend.contact') }}">Contact Us</a>
                     </div>

@@ -23,7 +23,6 @@ class AdminMiddleware
         else if(Auth::check() && Auth::user()->user_type=="user"){
              return $next($request);
         }
-        
         abort(401, "Unauthorize Access");
     }
 }

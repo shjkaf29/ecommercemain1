@@ -9,12 +9,17 @@ use App\Models\Order;
 class AdminOrderController extends Controller
 {
     public function view() {
-        $orders = Order::all();
+        $orders = Order::latest()->get();
         return view('admin.orders.vieworders', compact('orders'));
     }
 
     public function updateOrderStatus(Request $request, $id) {
         $order = Order::findOrFail($id);
+
+        $request->validate([
+            'status'=> 'required|in:pending,approved,shipped,cancelled',
+        ]);
+
         $order->status = $request->status;
         $order->save();
 

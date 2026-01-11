@@ -11,10 +11,11 @@ class AdminProductController extends Controller
 {
     public function add() {
         $categories = Category::all(); 
-        return view('admin.product.addproduct', compact('categories'));
+        return view('admin.product.', compact('categories'));
     }
 
 public function postAdd(Request $request) {
+
     $request->validate([
         'product_title' => 'required|string|max:255',
         'product_description' => 'required|string',
@@ -24,6 +25,7 @@ public function postAdd(Request $request) {
         'product_image' => 'required|image|mimes:jpg,png,jpeg,gif,webp|max:2048'
     ]);
 
+    // The product name is required
     $product = new Product();
 
     // Assign fields manually
@@ -35,6 +37,7 @@ public function postAdd(Request $request) {
 
     // Handle image separately
     if ($request->hasFile('product_image')) {
+        
         $image = $request->file('product_image');
         $imageName = time() . '.' . $image->getClientOriginalExtension();
         $image->move(public_path('product_images'), $imageName);

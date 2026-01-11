@@ -8,6 +8,7 @@
 
 
 @section('content')
+
     <div class="container">
       <div class="heading_container heading_center">
         <h2>Latest Products</h2>

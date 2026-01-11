@@ -10,17 +10,21 @@ use App\Models\ProductCart;
 class UserCartController extends Controller
 {
     public function addToCart($id){
+
             $product = Product::findOrFail($id);
             $quantity = request()->input('quantity', 1);
 
             if (Auth::check()) {
+
                 $cart = ProductCart::firstOrNew([
                     'user_id' => Auth::id(),
                     'product_id' => $product->id,
                 ]);
+                
                 $cart->quantity = ($cart->quantity ?? 0) + $quantity;
                 $cart->product_price = $product->product_prices;
                 $cart->save();
+
             } else {
                 $cart = session()->get('guest_cart', []);
 
